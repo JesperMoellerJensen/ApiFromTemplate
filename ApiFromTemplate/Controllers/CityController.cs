@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiFromTemplate.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class CityController : Controller
     {
         CityRepository repo = new CityRepository();
