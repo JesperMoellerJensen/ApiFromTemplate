@@ -5,14 +5,11 @@ using System.Threading.Tasks;
 
 namespace ApiFromTemplate.Models
 {
-    public class CityRepository
+    public static class CityDatabase
     {
-        public List<City> Cities { get; set; } = new List<City>();
-
-        public CityRepository()
+        public static List<City> Cities { get; set; } = new List<City>()
         {
-
-            City city1 = new City
+            new City
             {
                 Id = 1,
                 Name = "By 1",
@@ -32,9 +29,8 @@ namespace ApiFromTemplate.Models
                         Desciption = "Bordtennis og både"
                     },
                 }
-            };
-
-            City city2 = new City
+            },
+            new City
             {
                 Id = 2,
                 Name = "By 2",
@@ -54,10 +50,8 @@ namespace ApiFromTemplate.Models
                         Desciption = "Viser kun Marvel film"
                     },
                 }
-            };
+            }
 
-            Cities.Add(city1);
-            Cities.Add(city2);
-        }
+        };
     }
 }
