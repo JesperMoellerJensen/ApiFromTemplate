@@ -38,12 +38,13 @@ namespace ApiFromTemplate.Controllers
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
+        /* [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
             City removeCity = CityDatabase.Cities.First(x => x.Id == id);
-            CityDatabase.Cities[]
+            CityDatabase.Cities
         }
+        */
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
@@ -52,5 +53,18 @@ namespace ApiFromTemplate.Controllers
             City removeCity = CityDatabase.Cities.First(x => x.Id == id);
             CityDatabase.Cities.Remove(removeCity);
         }
+
+        // PATCH api/<controller>/5
+        [HttpPatch ("{id}")]
+        public void Patch(int id, [FromBody] Models.City city)
+        {
+            City updateCity = CityDatabase.Cities.First(x => x.Id == id);
+
+            
+            
+            
+
+        }
+
     }
 }
