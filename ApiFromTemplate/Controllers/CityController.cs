@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using ApiFromTemplate.Models;
@@ -27,7 +29,7 @@ namespace ApiFromTemplate.Controllers
         [HttpGet("{id}")]
         public City Get(int id)
         {
-            return CityDatabase.Cities[id];
+            return CityDatabase.Cities.First(x => x.Id == id);
         }
 
         // POST api/<controller>
@@ -38,13 +40,24 @@ namespace ApiFromTemplate.Controllers
         }
 
         // PUT api/<controller>/5
-        /* [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("{id}")]
+        public HttpResponseMessage PutCity(int id, [FromBody] City city)
         {
-            City removeCity = CityDatabase.Cities.First(x => x.Id == id);
-            CityDatabase.Cities
+            City updateCity = CityDatabase.Cities.First(x => x.Id == id);
+
+            if (updateCity == null)
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+
+            updateCity.Name = city.Name;
+            updateCity.Id = city.Id;
+            updateCity.Desciption = city.Desciption;
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
-        */
+
+
+        
+        
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]

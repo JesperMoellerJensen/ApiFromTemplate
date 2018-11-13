@@ -12,7 +12,7 @@ namespace ApiFromTemplate.Models
         public string Name { get; set; }
         public string Desciption { get; set; }
 
-        [JsonIgnore]
+        
         public List<Attraction> Attractions { get; set; }
     }
 }
