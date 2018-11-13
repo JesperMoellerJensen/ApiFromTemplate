@@ -41,18 +41,21 @@ namespace ApiFromTemplate.Controllers
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public HttpResponseMessage PutCity(int id, [FromBody] City city)
+        public IActionResult PutCity(int id, [FromBody] City city)
         {
-            City updateCity = CityDatabase.Cities.First(x => x.Id == id);
+            City putCity = CityDatabase.Cities.First(x => x.Id == id);
 
-            if (updateCity == null)
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            if (putCity == null)
+            {
+                NotFound();
+            }
+                
 
-            updateCity.Name = city.Name;
-            updateCity.Id = city.Id;
-            updateCity.Desciption = city.Desciption;
+            putCity.Name = city.Name;
+            putCity.Id = city.Id;
+            putCity.Desciption = city.Desciption;
 
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return Ok();
         }
 
 
@@ -69,14 +72,24 @@ namespace ApiFromTemplate.Controllers
 
         // PATCH api/<controller>/5
         [HttpPatch ("{id}")]
-        public void Patch(int id, [FromBody] Models.City city)
+        public IActionResult Patch(int id, [FromBody] Models.City city)
         {
-            City updateCity = CityDatabase.Cities.First(x => x.Id == id);
+            City patchCity = CityDatabase.Cities.First(x => x.Id == id);
 
-            
-            
-            
+            if (patchCity == null)
+            {
+                return NotFound(); 
+            }      
+                
+            else
+            {
+                patchCity.Name = city.Name;
+                patchCity.Desciption = city.Desciption;
+                patchCity.Id = city.Id;
+                 
+            }
 
+            return Ok();
         }
 
     }
